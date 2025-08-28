@@ -3,12 +3,12 @@ type: plugin
 author: security_tools
 name: nmap_scanner
 label:
-  en_US: Network Scanner (Nmap)
-  bn: নেটওয়ার্ক স্ক্যানার (Nmap)
-  ru: Сканер сети (Nmap)
-  zh_Hans: 网络扫描器 (Nmap)
-  ja_JP: ネットワークスキャナー (Nmap)
-  pt_BR: Scanner de Rede (Nmap)
+  en_US: Dify Network Scanner (D-Nmap)
+  bn: নেটওয়ার্ক স্ক্যানার (D-Nmap)
+  ru: Сканер сети (D-Nmap)
+  zh_Hans: 网络扫描器 (D-Nmap)
+  ja_JP: ネットワークスキャナー (D-Nmap)
+  pt_BR: Scanner de Rede (D-Nmap)
 description:
   en_US: Professional network discovery and security auditing tool with comprehensive scanning capabilities
   bn: পেশাদার নেটওয়ার্ক আবিষ্কার এবং নিরাপত্তা নিরীক্ষা সরঞ্জাম, যার রয়েছে ব্যাপক স্ক্যানিং ক্ষমতা
