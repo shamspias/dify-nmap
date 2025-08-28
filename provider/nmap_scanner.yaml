@@ -1,0 +1,66 @@
+identity:
+  author: security_tools
+  name: nmap_scanner
+  label:
+    en_US: Network Scanner (Nmap)
+    bn: নেটওয়ার্ক স্ক্যানার (Nmap)
+    ru: Сканер сети (Nmap)
+    zh_Hans: 网络扫描器 (Nmap)
+    ja_JP: ネットワークスキャナー (Nmap)
+    pt_BR: Scanner de Rede (Nmap)
+  description:
+    en_US: Professional network discovery and security auditing tool
+    bn: পেশাদার নেটওয়ার্ক আবিষ্কার এবং নিরাপত্তা নিরীক্ষা সরঞ্জাম
+    ru: Профессиональный инструмент для обнаружения сети и аудита безопасности
+    zh_Hans: 专业的网络发现和安全审计工具
+    ja_JP: プロフェッショナルなネットワーク検出およびセキュリティ監査ツール
+    pt_BR: Ferramenta profissional de descoberta de rede e auditoria de segurança
+  icon: nmap.png
+
+credentials_for_provider:
+  sudo_password:
+    type: secret-input
+    required: false
+    label:
+      en_US: Sudo Password (Optional)
+      bn: সুডো পাসওয়ার্ড (ঐচ্ছিক)
+      ru: Пароль sudo (необязательно)
+      zh_Hans: Sudo密码（可选）
+    placeholder:
+      en_US: Enter sudo password for privileged scans
+      bn: প্রিভিলেজড স্ক্যানের জন্য সুডো পাসওয়ার্ড লিখুন
+      ru: Введите пароль sudo для привилегированных сканирований
+      zh_Hans: 输入sudo密码以进行特权扫描
+    help:
+      en_US: Required only for SYN scans and OS detection
+      bn: শুধুমাত্র SYN স্ক্যান এবং OS শনাক্তকরণের জন্য প্রয়োজন
+      ru: Требуется только для SYN-сканирования и определения ОС
+      zh_Hans: 仅SYN扫描和OS检测需要
+  max_parallelism:
+    type: text-input
+    required: false
+    default: "100"
+    label:
+      en_US: Max Parallelism
+      bn: সর্বাধিক সমান্তরালতা
+      ru: Максимальный параллелизм
+      zh_Hans: 最大并行度
+    placeholder:
+      en_US: Maximum parallel probes
+      bn: সর্বাধিক সমান্তরাল প্রোব
+      ru: Максимальное количество параллельных запросов
+      zh_Hans: 最大并行探测数
+    help:
+      en_US: Limit parallel operations (default 100)
+      bn: সমান্তরাল অপারেশনের সীমা নির্ধারণ করুন (ডিফল্ট ১০০)
+      ru: Ограничение параллельных операций (по умолчанию 100)
+      zh_Hans: 限制并行操作（默认100）
+
+tools:
+  - tools/port_scanner.yaml
+  - tools/network_discovery.yaml
+  - tools/vulnerability_scanner.yaml
+
+extra:
+  python:
+    source: provider/nmap_scanner.py
