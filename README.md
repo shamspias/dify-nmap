@@ -271,9 +271,8 @@ Complete Nmap XML output for further analysis
 
 ## 🤝 Support
 
-- GitHub: [your-repo/dify-nmap-scanner]
-- Email: support@example.com
-- Documentation: [link-to-docs]
+- GitHub: [shamspias/dify-nmap](https://github.com/shamspias/dify-nmap)
+- Email: info@shamspias.com
 
 ## 📄 License
 
