@@ -1,0 +1,452 @@
+identity:
+  name: port_scanner
+  author: security_tools
+  label:
+    en_US: Comprehensive Port Scanner
+    zh_Hans: 综合端口扫描器
+    ja_JP: 包括的なポートスキャナー
+    pt_BR: Scanner de Porta Abrangente
+description:
+  human:
+    en_US: Perform comprehensive network scanning with all Nmap capabilities including port scanning, service detection, OS fingerprinting, and vulnerability assessment
+    zh_Hans: 执行全面的网络扫描，包括端口扫描、服务检测、操作系统指纹识别和漏洞评估等所有Nmap功能
+    ja_JP: ポートスキャン、サービス検出、OSフィンガープリンティング、脆弱性評価を含むNmapのすべての機能を使用して包括的なネットワークスキャンを実行
+    pt_BR: Execute varredura abrangente de rede com todas as capacidades do Nmap, incluindo varredura de portas, detecção de serviços, impressão digital de SO e avaliação de vulnerabilidades
+  llm: Execute comprehensive network scanning using Nmap with options for port scanning, service detection, OS fingerprinting, NSE scripts, timing control, and advanced evasion techniques
+
+parameters:
+  - name: targets
+    type: string
+    required: true
+    label:
+      en_US: Target Hosts
+      zh_Hans: 目标主机
+    human_description:
+      en_US: Target hosts (IP address, hostname, CIDR notation, or range)
+      zh_Hans: 目标主机（IP地址、主机名、CIDR表示法或范围）
+    llm_description: Target specification supporting single IP, hostname, CIDR (192.168.1.0/24), range (192.168.1.1-10), or comma-separated list
+    form: llm
+
+  - name: ports
+    type: string
+    required: false
+    label:
+      en_US: Ports to Scan
+      zh_Hans: 扫描端口
+    human_description:
+      en_US: Port specification (e.g., 22,80,443 or 1-1000 or - for all ports)
+      zh_Hans: 端口规范（例如：22,80,443 或 1-1000 或 - 表示所有端口）
+    llm_description: Port ranges like 22,80,443 or 1-1000 or - for all 65535 ports
+    form: llm
+
+  - name: scan_type
+    type: select
+    required: false
+    default: tcp_connect
+    options:
+      - value: tcp_connect
+        label:
+          en_US: TCP Connect
+      - value: syn_stealth
+        label:
+          en_US: SYN Stealth (Requires Root)
+      - value: udp
+        label:
+          en_US: UDP Scan
+      - value: tcp_ack
+        label:
+          en_US: TCP ACK
+      - value: tcp_window
+        label:
+          en_US: TCP Window
+      - value: tcp_maimon
+        label:
+          en_US: TCP Maimon
+      - value: tcp_null
+        label:
+          en_US: TCP Null
+      - value: tcp_fin
+        label:
+          en_US: TCP FIN
+      - value: tcp_xmas
+        label:
+          en_US: TCP Xmas
+      - value: sctp_init
+        label:
+          en_US: SCTP INIT
+      - value: ip_protocol
+        label:
+          en_US: IP Protocol
+    label:
+      en_US: Scan Type
+      zh_Hans: 扫描类型
+    human_description:
+      en_US: Type of port scan to perform
+      zh_Hans: 要执行的端口扫描类型
+    form: form
+
+  - name: timing_template
+    type: select
+    required: false
+    default: normal
+    options:
+      - value: paranoid
+        label:
+          en_US: Paranoid (IDS Evasion)
+      - value: sneaky
+        label:
+          en_US: Sneaky
+      - value: polite
+        label:
+          en_US: Polite
+      - value: normal
+        label:
+          en_US: Normal
+      - value: aggressive
+        label:
+          en_US: Aggressive
+      - value: insane
+        label:
+          en_US: Insane (Fastest)
+    label:
+      en_US: Timing Template
+      zh_Hans: 时序模板
+    human_description:
+      en_US: Speed and stealth balance
+      zh_Hans: 速度和隐蔽性平衡
+    form: form
+
+  - name: service_detection
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Service Detection
+      zh_Hans: 服务检测
+    human_description:
+      en_US: Detect service versions on open ports
+      zh_Hans: 检测开放端口上的服务版本
+    form: form
+
+  - name: version_intensity
+    type: number
+    required: false
+    default: 7
+    min: 0
+    max: 9
+    label:
+      en_US: Version Intensity
+      zh_Hans: 版本检测强度
+    human_description:
+      en_US: Service version detection intensity (0-9, higher is more accurate but slower)
+      zh_Hans: 服务版本检测强度（0-9，越高越准确但越慢）
+    form: form
+
+  - name: os_detection
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: OS Detection
+      zh_Hans: 操作系统检测
+    human_description:
+      en_US: Enable OS fingerprinting (requires root)
+      zh_Hans: 启用操作系统指纹识别（需要root权限）
+    form: form
+
+  - name: default_scripts
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Default Scripts
+      zh_Hans: 默认脚本
+    human_description:
+      en_US: Run default NSE scripts
+      zh_Hans: 运行默认NSE脚本
+    form: form
+
+  - name: script_categories
+    type: string
+    required: false
+    label:
+      en_US: Script Categories
+      zh_Hans: 脚本类别
+    human_description:
+      en_US: NSE script categories (e.g., vuln,safe,discovery)
+      zh_Hans: NSE脚本类别（例如：vuln,safe,discovery）
+    llm_description: Comma-separated script categories like auth,broadcast,brute,default,discovery,dos,exploit,external,fuzzer,intrusive,malware,safe,version,vuln
+    form: llm
+
+  - name: specific_scripts
+    type: string
+    required: false
+    label:
+      en_US: Specific Scripts
+      zh_Hans: 特定脚本
+    human_description:
+      en_US: Specific NSE scripts to run
+      zh_Hans: 要运行的特定NSE脚本
+    llm_description: Comma-separated script names like http-title,ssh-hostkey,ssl-cert,smb-os-discovery
+    form: llm
+
+  - name: script_args
+    type: string
+    required: false
+    label:
+      en_US: Script Arguments
+      zh_Hans: 脚本参数
+    human_description:
+      en_US: Arguments for NSE scripts
+      zh_Hans: NSE脚本参数
+    form: llm
+
+  - name: ping_type
+    type: select
+    required: false
+    default: tcp_syn
+    options:
+      - value: tcp_syn
+        label:
+          en_US: TCP SYN
+      - value: tcp_ack
+        label:
+          en_US: TCP ACK
+      - value: udp
+        label:
+          en_US: UDP
+      - value: sctp
+        label:
+          en_US: SCTP
+      - value: icmp_echo
+        label:
+          en_US: ICMP Echo
+      - value: icmp_timestamp
+        label:
+          en_US: ICMP Timestamp
+      - value: icmp_netmask
+        label:
+          en_US: ICMP Netmask
+      - value: ip_protocol
+        label:
+          en_US: IP Protocol
+      - value: arp
+        label:
+          en_US: ARP (Local Network)
+      - value: none
+        label:
+          en_US: No Ping
+    label:
+      en_US: Host Discovery Method
+      zh_Hans: 主机发现方法
+    form: form
+
+  - name: no_ping
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Skip Host Discovery
+      zh_Hans: 跳过主机发现
+    human_description:
+      en_US: Treat all hosts as online
+      zh_Hans: 将所有主机视为在线
+    form: form
+
+  - name: max_parallelism
+    type: number
+    required: false
+    default: 100
+    min: 1
+    max: 1000
+    label:
+      en_US: Max Parallelism
+      zh_Hans: 最大并行度
+    human_description:
+      en_US: Maximum parallel operations
+      zh_Hans: 最大并行操作数
+    form: form
+
+  - name: min_rate
+    type: number
+    required: false
+    min: 1
+    label:
+      en_US: Min Packet Rate
+      zh_Hans: 最小数据包速率
+    human_description:
+      en_US: Minimum packets per second
+      zh_Hans: 每秒最小数据包数
+    form: form
+
+  - name: max_rate
+    type: number
+    required: false
+    min: 1
+    label:
+      en_US: Max Packet Rate
+      zh_Hans: 最大数据包速率
+    human_description:
+      en_US: Maximum packets per second
+      zh_Hans: 每秒最大数据包数
+    form: form
+
+  - name: fragment_packets
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Fragment Packets
+      zh_Hans: 分片数据包
+    human_description:
+      en_US: Use fragmented IP packets for evasion
+      zh_Hans: 使用分片IP数据包进行规避
+    form: form
+
+  - name: mtu
+    type: number
+    required: false
+    min: 8
+    max: 65535
+    label:
+      en_US: Custom MTU
+      zh_Hans: 自定义MTU
+    human_description:
+      en_US: Set custom MTU size for fragments
+      zh_Hans: 为分片设置自定义MTU大小
+    form: form
+
+  - name: decoy_hosts
+    type: string
+    required: false
+    label:
+      en_US: Decoy Hosts
+      zh_Hans: 诱饵主机
+    human_description:
+      en_US: Decoy IP addresses for scan spoofing
+      zh_Hans: 用于扫描欺骗的诱饵IP地址
+    llm_description: Comma-separated list of decoy IPs or ME for self, RND for random
+    form: llm
+
+  - name: source_port
+    type: number
+    required: false
+    min: 1
+    max: 65535
+    label:
+      en_US: Source Port
+      zh_Hans: 源端口
+    human_description:
+      en_US: Use specific source port for scans
+      zh_Hans: 使用特定源端口进行扫描
+    form: form
+
+  - name: proxies
+    type: string
+    required: false
+    label:
+      en_US: Proxy Chain
+      zh_Hans: 代理链
+    human_description:
+      en_US: HTTP/SOCKS4 proxies for routing
+      zh_Hans: 用于路由的HTTP/SOCKS4代理
+    form: llm
+
+  - name: dns_resolution
+    type: select
+    required: false
+    default: sometimes
+    options:
+      - value: always
+        label:
+          en_US: Always
+      - value: never
+        label:
+          en_US: Never
+      - value: sometimes
+        label:
+          en_US: Sometimes (Smart)
+    label:
+      en_US: DNS Resolution
+      zh_Hans: DNS解析
+    form: form
+
+  - name: output_format
+    type: select
+    required: false
+    default: normal
+    options:
+      - value: normal
+        label:
+          en_US: Normal
+      - value: xml
+        label:
+          en_US: XML
+      - value: json
+        label:
+          en_US: JSON
+      - value: greppable
+        label:
+          en_US: Greppable
+      - value: all
+        label:
+          en_US: All Formats
+    label:
+      en_US: Output Format
+      zh_Hans: 输出格式
+    form: form
+
+  - name: verbose_level
+    type: number
+    required: false
+    default: 1
+    min: 0
+    max: 5
+    label:
+      en_US: Verbosity Level
+      zh_Hans: 详细程度
+    human_description:
+      en_US: Output verbosity (0-5)
+      zh_Hans: 输出详细程度（0-5）
+    form: form
+
+  - name: safe_mode
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Safe Mode
+      zh_Hans: 安全模式
+    human_description:
+      en_US: Avoid potentially dangerous scripts
+      zh_Hans: 避免潜在危险的脚本
+    form: form
+
+  - name: max_retries
+    type: number
+    required: false
+    default: 2
+    min: 0
+    max: 10
+    label:
+      en_US: Max Retries
+      zh_Hans: 最大重试次数
+    human_description:
+      en_US: Maximum retries for port probes
+      zh_Hans: 端口探测的最大重试次数
+    form: form
+
+  - name: host_timeout
+    type: string
+    required: false
+    label:
+      en_US: Host Timeout
+      zh_Hans: 主机超时
+    human_description:
+      en_US: Maximum time per host (e.g., 30m, 2h)
+      zh_Hans: 每个主机的最大时间（例如：30m，2h）
+    form: llm
+
+extra:
+  python:
+    source: tools/port_scanner.py
