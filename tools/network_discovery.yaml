@@ -1,0 +1,151 @@
+identity:
+  name: network_discovery
+  author: security_tools
+  label:
+    en_US: Network Discovery
+    bn: নেটওয়ার্ক আবিষ্কার
+    ru: Обнаружение сети
+    zh_Hans: 网络发现
+    ja_JP: ネットワーク検出
+    pt_BR: Descoberta de Rede
+description:
+  human:
+    en_US: Discover active hosts on a network using various ping techniques
+    bn: বিভিন্ন পিং প্রযুক্তি ব্যবহার করে নেটওয়ার্কে সক্রিয় হোস্ট আবিষ্কার করুন
+    ru: Обнаруживайте активные хосты в сети с помощью различных техник пинга
+    zh_Hans: 使用各种ping技术发现网络上的活动主机
+    ja_JP: さまざまなping技術を使用してネットワーク上のアクティブなホストを検出
+    pt_BR: Descubra hosts ativos em uma rede usando várias técnicas de ping
+  llm: Efficiently discover and enumerate active hosts on a network using ARP, ICMP, TCP, or UDP discovery methods
+
+parameters:
+  - name: network
+    type: string
+    required: true
+    label:
+      en_US: Network Range
+      bn: নেটওয়ার্ক রেঞ্জ
+      ru: Диапазон сети
+      zh_Hans: 网络范围
+    human_description:
+      en_US: Network to scan in CIDR notation (e.g., 192.168.1.0/24)
+      bn:
+        স্ক্যান করার জন্য নেটওয়ার্ক, CIDR নোটেশনে (যেমন: 192.168.1.0/24)
+      ru: Сеть для сканирования в нотации CIDR (например, 192.168.1.0/24)
+      zh_Hans: 要扫描的网络，使用CIDR表示法（例如：192.168.1.0/24）
+    llm_description: Network range in CIDR notation like 192.168.1.0/24 or 10.0.0.0/8
+    form: llm
+
+  - name: discovery_method
+    type: select
+    required: false
+    default: arp
+    options:
+      - value: arp
+        label:
+          en_US: ARP (Local Network)
+          bn: ARP (লোকাল নেটওয়ার্ক)
+          ru: ARP (локальная сеть)
+          zh_Hans: ARP（本地网络）
+      - value: icmp
+        label:
+          en_US: ICMP Echo
+          bn: ICMP ইকো
+          ru: ICMP Echo
+          zh_Hans: ICMP回显
+      - value: tcp
+        label:
+          en_US: TCP SYN
+          bn: TCP SYN
+          ru: TCP SYN
+          zh_Hans: TCP SYN
+      - value: udp
+        label:
+          en_US: UDP
+          bn: UDP
+          ru: UDP
+          zh_Hans: UDP
+      - value: comprehensive
+        label:
+          en_US: Comprehensive
+          bn: সর্বাঙ্গীন
+          ru: Всесторонний
+          zh_Hans: 综合
+    label:
+      en_US: Discovery Method
+      bn: আবিষ্কারের পদ্ধতি
+      ru: Метод обнаружения
+      zh_Hans: 发现方法
+    form: form
+
+  - name: resolve_hostnames
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Resolve Hostnames
+      bn: হোস্টনেম রেজলভ করুন
+      ru: Разрешать имена хостов
+      zh_Hans: 解析主机名
+    form: form
+
+  - name: detect_os
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Detect OS
+      bn: OS শনাক্ত করুন
+      ru: Определение ОС
+      zh_Hans: 检测操作系统
+    human_description:
+      en_US: Basic OS detection (requires root)
+      bn: প্রাথমিক OS শনাক্তকরণ (root প্রয়োজন)
+      ru: Базовое определение ОС (требуются права root)
+      zh_Hans: 基本操作系统检测（需要root权限）
+    form: form
+
+  - name: show_mac_addresses
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Show MAC Addresses
+      bn: MAC ঠিকানা প্রদর্শন করুন
+      ru: Показать MAC-адреса
+      zh_Hans: 显示MAC地址
+    form: form
+
+  - name: scan_speed
+    type: select
+    required: false
+    default: normal
+    options:
+      - value: slow
+        label:
+          en_US: Slow
+          bn: ধীর
+          ru: Медленный
+          zh_Hans: 慢速
+      - value: normal
+        label:
+          en_US: Normal
+          bn: স্বাভাবিক
+          ru: Нормальный
+          zh_Hans: 正常
+      - value: fast
+        label:
+          en_US: Fast
+          bn: দ্রুত
+          ru: Быстрый
+          zh_Hans: 快速
+    label:
+      en_US: Scan Speed
+      bn: স্ক্যানের গতি
+      ru: Скорость сканирования
+      zh_Hans: 扫描速度
+    form: form
+
+extra:
+  python:
+    source: tools/network_discovery.py
