@@ -1,0 +1,64 @@
+identity:
+  name: service_detector
+  author: security_tools
+  label:
+    en_US: Service Detector
+    zh_Hans: 服务检测器
+    ja_JP: サービス検出器
+    pt_BR: Detector de Serviços
+description:
+  human:
+    en_US: Detect and identify services running on target ports with version information
+    zh_Hans: 检测并识别目标端口上运行的服务及其版本信息
+    ja_JP: ターゲットポートで実行されているサービスとバージョン情報を検出して識別
+    pt_BR: Detectar e identificar serviços em execução em portas de destino com informações de versão
+  llm: Service and version detection using Nmap's service fingerprinting capabilities
+
+parameters:
+  - name: target
+    type: string
+    required: true
+    label:
+      en_US: Target
+    human_description:
+      en_US: Host(s) to probe for running services (IP/hostname/CIDR/range).
+    llm_description: Target specification (IP, hostname, CIDR like 10.0.0.0/24, range 10.0.0.1-10, or comma-separated list).
+    form: llm
+
+  - name: ports
+    type: string
+    required: false
+    label:
+      en_US: Ports
+    human_description:
+      en_US: Ports to check (e.g., 22,80,443 or 1-1024 or - for all).
+    llm_description: Port list/range such as 80,443,8080 or 1-1024 or "-" for all 65535 ports.
+    form: llm
+
+  - name: intensity
+    type: number
+    required: false
+    default: 7
+    min: 0
+    max: 9
+    label:
+      en_US: Detection Intensity
+      zh_Hans: 检测强度
+    human_description:
+      en_US: Higher values increase accuracy but take longer (0-9)
+      zh_Hans: 更高的值提高准确性但需要更长时间（0-9）
+    form: form
+
+  - name: service_info
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Include Service Info
+    human_description:
+      en_US: Return detected product/version/extrainfo for each open service.
+    form: form
+
+extra:
+  python:
+    source: tools/service_detector.py
