@@ -25,22 +25,28 @@ capabilities through an intuitive interface.
 
 ### Prerequisites
 
-1. **Nmap Installation**: The system must have Nmap installed
+Here’s a drop-in replacement for your README section:
+
+## 📦 Installation
+
+### Prerequisites
+
+1. **Find the plugin container**
+
    ```bash
-   # Ubuntu/Debian
-   sudo apt-get install nmap
-   
-   # CentOS/RHEL/Fedora
-   sudo yum install nmap
-   
-   # macOS
-   brew install nmap
-   
-   # Windows
-   Download from https://nmap.org/download.html
+   docker ps --format '{{.Names}}' | grep plugin_daemon || true
+   # Default name if you didn't change anything:
+   # docker-plugin_daemon-1
    ```
 
-2. **Python Dependencies**: Automatically installed by Dify
+2. **Install Nmap inside the plugin container (Ubuntu/Debian base)**
+
+   ```bash
+   docker exec -it -u root docker-plugin_daemon-1 bash -lc \
+     'apt-get update && apt-get install -y nmap && nmap --version'
+   ```
+
+3. **Python Dependencies**: Automatically installed by Dify
     - python-nmap
     - pydantic
     - ipaddress
