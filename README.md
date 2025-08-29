@@ -21,15 +21,9 @@ capabilities through an intuitive interface.
 - **Script Engine**: Support for all NSE script categories and custom scripts
 - **Multiple Output Formats**: Normal, XML, JSON, greppable
 
-## 📦 Installation
-
 ### Prerequisites
 
-Here’s a drop-in replacement for your README section:
-
 ## 📦 Installation
-
-### Prerequisites
 
 1. **Find the plugin container**
 
