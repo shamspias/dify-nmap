@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 The Wandering Algorithm
+Copyright (c) 2025 Security Tools Development Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,49 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+ADDITIONAL TERMS AND CONDITIONS:
+
+1. LEGAL COMPLIANCE
+   Users of this software must comply with all applicable laws and regulations
+   regarding network scanning and security testing. This includes, but is not
+   limited to:
+   - Obtaining proper authorization before scanning any network or system
+   - Complying with the Computer Fraud and Abuse Act (CFAA) in the United States
+   - Following similar legislation in other jurisdictions
+   - Respecting privacy laws and regulations
+
+2. ETHICAL USE
+   This software is intended for legitimate security testing and network
+   administration purposes only. Users must:
+   - Only scan networks and systems they own or have explicit permission to test
+   - Not use this software for malicious purposes
+   - Report any vulnerabilities discovered responsibly
+   - Respect the privacy and security of others
+
+3. NO WARRANTY FOR SCANNING RESULTS
+   The authors provide no warranty regarding the accuracy, completeness, or
+   reliability of scan results. Users should:
+   - Verify scan results independently
+   - Not rely solely on this tool for security assessments
+   - Understand that network scanning can produce false positives and negatives
+
+4. THIRD-PARTY SOFTWARE
+   This plugin relies on Nmap, which is licensed under its own terms:
+   - Nmap is licensed under the Nmap Public Source License
+   - Users must comply with Nmap's licensing terms
+   - See https://nmap.org/book/man-legal.html for details
+
+5. LIMITATION OF LIABILITY
+   In no event shall the authors be liable for any damages arising from:
+   - Unauthorized network scanning
+   - Misuse of scan results
+   - Network disruption caused by scanning activities
+   - Legal consequences of improper use
+
+6. INDEMNIFICATION
+   Users agree to indemnify and hold harmless the authors from any claims,
+   damages, or legal actions arising from their use of this software.
+
+By using this software, you acknowledge that you have read, understood, and
+agree to be bound by these terms and conditions.
