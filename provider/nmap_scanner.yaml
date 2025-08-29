@@ -60,6 +60,8 @@ tools:
   - tools/port_scanner.yaml
   - tools/network_discovery.yaml
   - tools/vulnerability_scanner.yaml
+  - tools/service_detector.yaml
+  - tools/os_fingerprint.yaml
 
 extra:
   python:
