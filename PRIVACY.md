@@ -85,13 +85,6 @@ This privacy policy may be updated to reflect:
 - Security improvements
 - User feedback
 
-## Contact
-
-For privacy-related inquiries:
-
-- Email: privacy@security-tools.example.com
-- GitHub: [Issue Tracker]
-
 ## Incident Reporting
 
 If you discover any privacy or security issues:
