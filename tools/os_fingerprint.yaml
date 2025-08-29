@@ -1,0 +1,65 @@
+identity:
+  name: os_fingerprint
+  author: security_tools
+  label:
+    en_US: OS Fingerprinting
+    zh_Hans: 操作系统指纹识别
+    ja_JP: OSフィンガープリンティング
+    pt_BR: Impressão Digital do SO
+description:
+  human:
+    en_US: Identify operating systems through TCP/IP stack fingerprinting
+    zh_Hans: 通过TCP/IP堆栈指纹识别操作系统
+    ja_JP: TCP/IPスタックフィンガープリンティングによるオペレーティングシステムの識別
+    pt_BR: Identificar sistemas operacionais através de impressão digital da pilha TCP/IP
+  llm: Operating system detection and identification using TCP/IP fingerprinting techniques
+
+parameters:
+  - name: target
+    type: string
+    required: true
+    label:
+      en_US: Target
+    human_description:
+      en_US: Host(s) for OS detection (IP/hostname/CIDR/range).
+    llm_description: Target specification supporting IPs, hostnames, CIDR blocks, ranges, or comma-separated lists.
+    form: llm
+
+  - name: aggressive_guess
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Aggressive OS Guess
+      zh_Hans: 激进OS猜测
+    human_description:
+      en_US: Make aggressive guesses when exact match not found
+      zh_Hans: 在找不到精确匹配时进行激进猜测
+    form: form
+
+  - name: detect_version
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Detect OS Version
+      zh_Hans: 检测OS版本
+    human_description:
+      en_US: Also run version detection on open ports to improve OS guesses.
+    form: form
+
+  - name: scan_limit
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Limit to Promising Hosts
+      zh_Hans: 限制为有希望的主机
+    human_description:
+      en_US: Only scan hosts with at least one open and one closed port
+      zh_Hans: 仅扫描至少有一个开放端口和一个关闭端口的主机
+    form: form
+
+extra:
+  python:
+    source: tools/os_fingerprint.py
