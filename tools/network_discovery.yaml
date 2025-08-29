@@ -76,6 +76,8 @@ parameters:
       bn: আবিষ্কারের পদ্ধতি
       ru: Метод обнаружения
       zh_Hans: 发现方法
+    human_description:
+      en_US: Technique used to find live hosts on the network.
     form: form
 
   - name: resolve_hostnames
@@ -87,6 +89,8 @@ parameters:
       bn: হোস্টনেম রেজলভ করুন
       ru: Разрешать имена хостов
       zh_Hans: 解析主机名
+    human_description:
+      en_US: Perform reverse DNS lookups for discovered hosts.
     form: form
 
   - name: detect_os
@@ -114,6 +118,8 @@ parameters:
       bn: MAC ঠিকানা প্রদর্শন করুন
       ru: Показать MAC-адреса
       zh_Hans: 显示MAC地址
+    human_description:
+      en_US: Display MAC address and vendor (where available).
     form: form
 
   - name: scan_speed
@@ -144,6 +150,8 @@ parameters:
       bn: স্ক্যানের গতি
       ru: Скорость сканирования
       zh_Hans: 扫描速度
+    human_description:
+      en_US: Controls timing template used for discovery speed vs. accuracy.
     form: form
 
 extra:
