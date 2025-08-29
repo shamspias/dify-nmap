@@ -1,6 +1,6 @@
 identity:
   name: port_scanner
-  author: security_tools
+  author: shamspias
   label:
     en_US: Comprehensive Port Scanner
     zh_Hans: 综合端口扫描器

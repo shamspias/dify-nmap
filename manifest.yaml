@@ -1,6 +1,6 @@
 version: 0.0.1
 type: plugin
-author: security_tools
+author: shamspias
 name: nmap_scanner
 label:
   en_US: Dify Network Scanner (D-Nmap)

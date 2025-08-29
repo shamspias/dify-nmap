@@ -1,5 +1,5 @@
 identity:
-  author: security_tools
+  author: shamspias
   name: nmap_scanner
   label:
     en_US: Network Scanner (Nmap)

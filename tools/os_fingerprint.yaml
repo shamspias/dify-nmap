@@ -1,6 +1,6 @@
 identity:
   name: os_fingerprint
-  author: security_tools
+  author: shamspias
   label:
     en_US: OS Fingerprinting
     zh_Hans: 操作系统指纹识别
