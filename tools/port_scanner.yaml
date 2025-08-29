@@ -199,6 +199,9 @@ parameters:
     human_description:
       en_US: Arguments for NSE scripts
       zh_Hans: NSE脚本参数
+    llm_description: >
+      Key=value list for NSE scripts, e.g. "user=admin,pass=secret" or
+      "http.useragent=Mozilla/5.0". Comma-separated; quote values with spaces.
     form: llm
 
   - name: ping_type
@@ -239,6 +242,8 @@ parameters:
     label:
       en_US: Host Discovery Method
       zh_Hans: 主机发现方法
+    human_description:
+      en_US: Probe type used for host discovery before scanning.
     form: form
 
   - name: no_ping
@@ -350,6 +355,9 @@ parameters:
     human_description:
       en_US: HTTP/SOCKS4 proxies for routing
       zh_Hans: 用于路由的HTTP/SOCKS4代理
+    llm_description: >
+      Comma-separated proxy URIs (e.g., http://host:8080, socks4://1.2.3.4:1080).
+      Multiple entries imply chaining; supports http, https, socks4, socks5.
     form: llm
 
   - name: dns_resolution
@@ -369,6 +377,8 @@ parameters:
     label:
       en_US: DNS Resolution
       zh_Hans: DNS解析
+    human_description:
+      en_US: When to perform reverse DNS resolution for hosts and services.
     form: form
 
   - name: output_format
@@ -394,6 +404,8 @@ parameters:
     label:
       en_US: Output Format
       zh_Hans: 输出格式
+    human_description:
+      en_US: Select the report format(s) to generate.
     form: form
 
   - name: verbose_level
@@ -445,6 +457,8 @@ parameters:
     human_description:
       en_US: Maximum time per host (e.g., 30m, 2h)
       zh_Hans: 每个主机的最大时间（例如：30m，2h）
+    llm_description: >
+      Duration string limiting time spent per host (e.g., 30s, 5m, 1h, 2h30m).
     form: llm
 
 extra:
