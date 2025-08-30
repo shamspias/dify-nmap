@@ -62,6 +62,7 @@ tools:
   - tools/vulnerability_scanner.yaml
   - tools/service_detector.yaml
   - tools/os_fingerprint.yaml
+  - tools/comprehensive_scanner.yaml
 
 extra:
   python:
