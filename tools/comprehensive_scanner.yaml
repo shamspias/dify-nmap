@@ -1,0 +1,473 @@
+identity:
+  name: comprehensive_scanner
+  author: shamspias
+  label:
+    en_US: Comprehensive Scanner
+    bn: সর্বাঙ্গীণ স্ক্যানার
+    ru: Комплексный сканер
+    zh_Hans: 综合扫描器
+    ja_JP: 包括的スキャナー
+    pt_BR: Scanner Abrangente
+
+description:
+  human:
+    en_US: Advanced Nmap scanner with all features including performance optimization, evasion techniques, and comprehensive reporting
+    bn: পারফরম্যান্স অপটিমাইজেশন, ইভেশন টেকনিক এবং সর্বাঙ্গীণ রিপোর্টিং সহ উন্নত Nmap স্ক্যানার
+    ru: Расширенный сканер Nmap со всеми функциями, включая оптимизацию производительности, методы уклонения и комплексную отчетность
+    zh_Hans: 高级Nmap扫描器，具有所有功能，包括性能优化、规避技术和全面报告
+    ja_JP: パフォーマンス最適化、回避技術、包括的レポートを含むすべての機能を備えた高度なNmapスキャナー
+    pt_BR: Scanner Nmap avançado com todos os recursos, incluindo otimização de desempenho, técnicas de evasão e relatórios abrangentes
+  llm: Ultimate Nmap scanner with complete control over all scanning parameters, advanced evasion, performance tuning, and detailed vulnerability assessment
+
+parameters:
+  - name: targets
+    type: string
+    required: true
+    label:
+      en_US: Target Hosts
+      bn: লক্ষ্য হোস্ট
+      ru: Целевые хосты
+      zh_Hans: 目标主机
+      ja_JP: ターゲットホスト
+      pt_BR: Hosts Alvo
+    human_description:
+      en_US: Target hosts to scan (IP, hostname, CIDR, or range)
+      bn: স্ক্যান করার জন্য লক্ষ্য হোস্ট (IP, হোস্টনেম, CIDR, বা রেঞ্জ)
+      ru: Целевые хосты для сканирования (IP, имя хоста, CIDR или диапазон)
+      zh_Hans: 要扫描的目标主机（IP、主机名、CIDR或范围）
+      ja_JP: スキャンするターゲットホスト（IP、ホスト名、CIDR、または範囲）
+      pt_BR: Hosts alvo para escanear (IP, nome do host, CIDR ou intervalo)
+    llm_description: Target specification supporting single IP, hostname, CIDR (192.168.1.0/24), range (192.168.1.1-10), or comma-separated list
+    form: llm
+
+  - name: scan_profile
+    type: select
+    required: false
+    default: balanced
+    options:
+      - value: quick
+        label:
+          en_US: Quick Scan
+          bn: দ্রুত স্ক্যান
+          ru: Быстрое сканирование
+          zh_Hans: 快速扫描
+          ja_JP: クイックスキャン
+          pt_BR: Varredura Rápida
+      - value: balanced
+        label:
+          en_US: Balanced
+          bn: ভারসাম্যপূর্ণ
+          ru: Сбалансированный
+          zh_Hans: 平衡
+          ja_JP: バランス
+          pt_BR: Equilibrado
+      - value: thorough
+        label:
+          en_US: Thorough
+          bn: পুঙ্খানুপুঙ্খ
+          ru: Тщательный
+          zh_Hans: 彻底
+          ja_JP: 徹底的
+          pt_BR: Minucioso
+      - value: paranoid
+        label:
+          en_US: Paranoid (Stealth)
+          bn: প্যারানয়েড (গোপন)
+          ru: Параноидальный (скрытный)
+          zh_Hans: 偏执（隐身）
+          ja_JP: パラノイド（ステルス）
+          pt_BR: Paranoico (Furtivo)
+      - value: custom
+        label:
+          en_US: Custom
+          bn: কাস্টম
+          ru: Пользовательский
+          zh_Hans: 自定义
+          ja_JP: カスタム
+          pt_BR: Personalizado
+    label:
+      en_US: Scan Profile
+      bn: স্ক্যান প্রোফাইল
+      ru: Профиль сканирования
+      zh_Hans: 扫描配置文件
+      ja_JP: スキャンプロファイル
+      pt_BR: Perfil de Varredura
+    human_description:
+      en_US: Predefined scanning profiles for different scenarios
+      bn: বিভিন্ন পরিস্থিতির জন্য পূর্বনির্ধারিত স্ক্যানিং প্রোফাইল
+      ru: Предустановленные профили сканирования для различных сценариев
+      zh_Hans: 针对不同场景的预定义扫描配置文件
+      ja_JP: さまざまなシナリオ用の事前定義されたスキャンプロファイル
+      pt_BR: Perfis de varredura predefinidos para diferentes cenários
+    form: form
+
+  - name: ports
+    type: string
+    required: false
+    label:
+      en_US: Ports to Scan
+      bn: স্ক্যান করার পোর্ট
+      ru: Порты для сканирования
+      zh_Hans: 要扫描的端口
+      ja_JP: スキャンするポート
+      pt_BR: Portas para Escanear
+    human_description:
+      en_US: Port specification (e.g., 22,80,443 or 1-1000 or - for all)
+      bn: পোর্ট স্পেসিফিকেশন (যেমন, 22,80,443 বা 1-1000 বা - সবার জন্য)
+      ru: Спецификация портов (например, 22,80,443 или 1-1000 или - для всех)
+      zh_Hans: 端口规范（例如，22,80,443或1-1000或-表示全部）
+      ja_JP: ポート仕様（例：22,80,443または1-1000またはすべての場合は-）
+      pt_BR: Especificação de porta (por exemplo, 22,80,443 ou 1-1000 ou - para todas)
+    llm_description: Port specification like 22,80,443 or 1-1000 or - for all 65535 ports or --top-ports 100
+    form: llm
+
+  - name: scan_techniques
+    type: string
+    required: false
+    default: tcp_syn
+    label:
+      en_US: Scan Techniques
+      bn: স্ক্যান কৌশল
+      ru: Методы сканирования
+      zh_Hans: 扫描技术
+      ja_JP: スキャン技術
+      pt_BR: Técnicas de Varredura
+    human_description:
+      en_US: Comma-separated scan types (tcp_syn, tcp_connect, udp, tcp_ack, etc.)
+      bn: কমা-বিভক্ত স্ক্যান টাইপ (tcp_syn, tcp_connect, udp, tcp_ack, ইত্যাদি)
+      ru: Типы сканирования через запятую (tcp_syn, tcp_connect, udp, tcp_ack и т.д.)
+      zh_Hans: 逗号分隔的扫描类型（tcp_syn、tcp_connect、udp、tcp_ack等）
+      ja_JP: カンマ区切りのスキャンタイプ（tcp_syn、tcp_connect、udp、tcp_ackなど）
+      pt_BR: Tipos de varredura separados por vírgula (tcp_syn, tcp_connect, udp, tcp_ack, etc.)
+    llm_description: Multiple scan types can be combined - tcp_syn, tcp_connect, tcp_ack, tcp_window, tcp_maimon, tcp_null, tcp_fin, tcp_xmas, tcp_idle, udp, sctp_init, sctp_cookie, ip_protocol, ftp_bounce
+    form: llm
+
+  - name: performance_level
+    type: select
+    required: false
+    default: auto
+    options:
+      - value: auto
+        label:
+          en_US: Auto
+          bn: স্বয়ংক্রিয়
+          ru: Авто
+          zh_Hans: 自动
+          ja_JP: 自動
+          pt_BR: Automático
+      - value: low
+        label:
+          en_US: Low (Slow)
+          bn: কম (ধীর)
+          ru: Низкий (медленный)
+          zh_Hans: 低（慢）
+          ja_JP: 低（遅い）
+          pt_BR: Baixo (Lento)
+      - value: medium
+        label:
+          en_US: Medium
+          bn: মাঝারি
+          ru: Средний
+          zh_Hans: 中等
+          ja_JP: 中
+          pt_BR: Médio
+      - value: high
+        label:
+          en_US: High (Fast)
+          bn: উচ্চ (দ্রুত)
+          ru: Высокий (быстрый)
+          zh_Hans: 高（快）
+          ja_JP: 高（速い）
+          pt_BR: Alto (Rápido)
+      - value: extreme
+        label:
+          en_US: Extreme
+          bn: চরম
+          ru: Экстремальный
+          zh_Hans: 极限
+          ja_JP: 極限
+          pt_BR: Extremo
+    label:
+      en_US: Performance Level
+      bn: পারফরম্যান্স স্তর
+      ru: Уровень производительности
+      zh_Hans: 性能级别
+      ja_JP: パフォーマンスレベル
+      pt_BR: Nível de Desempenho
+    human_description:
+      en_US: Scan speed and resource usage optimization
+      bn: স্ক্যান গতি এবং রিসোর্স ব্যবহার অপটিমাইজেশন
+      ru: Оптимизация скорости сканирования и использования ресурсов
+      zh_Hans: 扫描速度和资源使用优化
+      ja_JP: スキャン速度とリソース使用の最適化
+      pt_BR: Otimização de velocidade de varredura e uso de recursos
+    form: form
+
+  - name: service_detection
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Service Detection
+      bn: সার্ভিস সনাক্তকরণ
+      ru: Обнаружение сервисов
+      zh_Hans: 服务检测
+      ja_JP: サービス検出
+      pt_BR: Detecção de Serviços
+    human_description:
+      en_US: Detect service versions on open ports
+      bn: খোলা পোর্টে সার্ভিস সংস্করণ সনাক্ত করুন
+      ru: Обнаружение версий сервисов на открытых портах
+      zh_Hans: 检测开放端口上的服务版本
+      ja_JP: オープンポートでサービスバージョンを検出
+      pt_BR: Detectar versões de serviço em portas abertas
+    form: form
+
+  - name: os_detection
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: OS Detection
+      bn: OS সনাক্তকরণ
+      ru: Определение ОС
+      zh_Hans: 操作系统检测
+      ja_JP: OS検出
+      pt_BR: Detecção de SO
+    human_description:
+      en_US: Enable operating system fingerprinting
+      bn: অপারেটিং সিস্টেম ফিঙ্গারপ্রিন্টিং সক্ষম করুন
+      ru: Включить определение операционной системы
+      zh_Hans: 启用操作系统指纹识别
+      ja_JP: オペレーティングシステムのフィンガープリンティングを有効にする
+      pt_BR: Ativar impressão digital do sistema operacional
+    form: form
+
+  - name: script_categories
+    type: string
+    required: false
+    label:
+      en_US: Script Categories
+      bn: স্ক্রিপ্ট ক্যাটাগরি
+      ru: Категории скриптов
+      zh_Hans: 脚本类别
+      ja_JP: スクリプトカテゴリ
+      pt_BR: Categorias de Script
+    human_description:
+      en_US: NSE script categories to run (e.g., vuln,safe,discovery)
+      bn: চালানোর জন্য NSE স্ক্রিপ্ট ক্যাটাগরি (যেমন, vuln,safe,discovery)
+      ru: Категории NSE-скриптов для запуска (например, vuln,safe,discovery)
+      zh_Hans: 要运行的NSE脚本类别（例如，vuln,safe,discovery）
+      ja_JP: 実行するNSEスクリプトカテゴリ（例：vuln,safe,discovery）
+      pt_BR: Categorias de script NSE para executar (por exemplo, vuln,safe,discovery)
+    llm_description: Comma-separated NSE script categories - auth, broadcast, brute, default, discovery, dos, exploit, external, fuzzer, intrusive, malware, safe, version, vuln
+    form: llm
+
+  - name: ipv6_scan
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: IPv6 Scan
+      bn: IPv6 স্ক্যান
+      ru: IPv6 сканирование
+      zh_Hans: IPv6扫描
+      ja_JP: IPv6スキャン
+      pt_BR: Varredura IPv6
+    human_description:
+      en_US: Enable IPv6 scanning
+      bn: IPv6 স্ক্যানিং সক্ষম করুন
+      ru: Включить сканирование IPv6
+      zh_Hans: 启用IPv6扫描
+      ja_JP: IPv6スキャンを有効にする
+      pt_BR: Ativar varredura IPv6
+    form: form
+
+  - name: fragment_packets
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Fragment Packets
+      bn: প্যাকেট খণ্ডিত করুন
+      ru: Фрагментировать пакеты
+      zh_Hans: 分片数据包
+      ja_JP: パケットの断片化
+      pt_BR: Fragmentar Pacotes
+    human_description:
+      en_US: Use packet fragmentation for IDS evasion
+      bn: IDS এড়ানোর জন্য প্যাকেট ফ্র্যাগমেন্টেশন ব্যবহার করুন
+      ru: Использовать фрагментацию пакетов для обхода IDS
+      zh_Hans: 使用数据包分片进行IDS规避
+      ja_JP: IDS回避のためにパケット断片化を使用
+      pt_BR: Usar fragmentação de pacotes para evasão de IDS
+    form: form
+
+  - name: decoy_hosts
+    type: string
+    required: false
+    label:
+      en_US: Decoy Hosts
+      bn: ডিকয় হোস্ট
+      ru: Ложные хосты
+      zh_Hans: 诱饵主机
+      ja_JP: デコイホスト
+      pt_BR: Hosts Isca
+    human_description:
+      en_US: Comma-separated decoy IPs (e.g., 192.168.1.5,192.168.1.8,ME)
+      bn: কমা-বিভক্ত ডিকয় IP (যেমন, 192.168.1.5,192.168.1.8,ME)
+      ru: IP-адреса ложных хостов через запятую (например, 192.168.1.5,192.168.1.8,ME)
+      zh_Hans: 逗号分隔的诱饵IP（例如，192.168.1.5,192.168.1.8,ME）
+      ja_JP: カンマ区切りのデコイIP（例：192.168.1.5,192.168.1.8,ME）
+      pt_BR: IPs isca separados por vírgula (por exemplo, 192.168.1.5,192.168.1.8,ME)
+    llm_description: Comma-separated list of decoy IPs or ME for self, RND for random
+    form: llm
+
+  - name: traceroute
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Traceroute
+      bn: ট্রেসরাউট
+      ru: Трассировка
+      zh_Hans: 路由跟踪
+      ja_JP: トレースルート
+      pt_BR: Traceroute
+    human_description:
+      en_US: Perform traceroute to targets
+      bn: লক্ষ্যে ট্রেসরাউট সম্পাদন করুন
+      ru: Выполнить трассировку до целей
+      zh_Hans: 对目标执行路由跟踪
+      ja_JP: ターゲットへのトレースルートを実行
+      pt_BR: Executar traceroute para alvos
+    form: form
+
+  - name: output_formats
+    type: string
+    required: false
+    default: normal,json
+    label:
+      en_US: Output Formats
+      bn: আউটপুট ফরম্যাট
+      ru: Форматы вывода
+      zh_Hans: 输出格式
+      ja_JP: 出力形式
+      pt_BR: Formatos de Saída
+    human_description:
+      en_US: Comma-separated output formats (normal, xml, json, greppable, all)
+      bn: কমা-বিভক্ত আউটপুট ফরম্যাট (normal, xml, json, greppable, all)
+      ru: Форматы вывода через запятую (normal, xml, json, greppable, all)
+      zh_Hans: 逗号分隔的输出格式（normal、xml、json、greppable、all）
+      ja_JP: カンマ区切りの出力形式（normal、xml、json、greppable、all）
+      pt_BR: Formatos de saída separados por vírgula (normal, xml, json, greppable, all)
+    llm_description: Comma-separated list - normal, xml, json, greppable, all
+    form: llm
+
+  - name: safe_mode
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Safe Mode
+      bn: নিরাপদ মোড
+      ru: Безопасный режим
+      zh_Hans: 安全模式
+      ja_JP: セーフモード
+      pt_BR: Modo Seguro
+    human_description:
+      en_US: Avoid potentially dangerous scripts
+      bn: সম্ভাব্য বিপজ্জনক স্ক্রিপ্ট এড়িয়ে চলুন
+      ru: Избегать потенциально опасных скриптов
+      zh_Hans: 避免潜在危险的脚本
+      ja_JP: 潜在的に危険なスクリプトを避ける
+      pt_BR: Evitar scripts potencialmente perigosos
+    form: form
+
+  - name: aggressive_mode
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Aggressive Mode
+      bn: আক্রমণাত্মক মোড
+      ru: Агрессивный режим
+      zh_Hans: 激进模式
+      ja_JP: アグレッシブモード
+      pt_BR: Modo Agressivo
+    human_description:
+      en_US: Use aggressive timing and intrusive scripts
+      bn: আক্রমণাত্মক টাইমিং এবং অনুপ্রবেশকারী স্ক্রিপ্ট ব্যবহার করুন
+      ru: Использовать агрессивную синхронизацию и навязчивые скрипты
+      zh_Hans: 使用激进的时序和侵入性脚本
+      ja_JP: 積極的なタイミングと侵入的なスクリプトを使用
+      pt_BR: Usar temporização agressiva e scripts intrusivos
+    form: form
+
+  - name: verbose_level
+    type: number
+    required: false
+    default: 1
+    min: 0
+    max: 5
+    label:
+      en_US: Verbosity Level
+      bn: বিস্তারিত স্তর
+      ru: Уровень детализации
+      zh_Hans: 详细程度
+      ja_JP: 詳細レベル
+      pt_BR: Nível de Detalhamento
+    human_description:
+      en_US: Output verbosity level (0-5)
+      bn: আউটপুট বিস্তারিত স্তর (0-5)
+      ru: Уровень детализации вывода (0-5)
+      zh_Hans: 输出详细程度（0-5）
+      ja_JP: 出力の詳細レベル（0-5）
+      pt_BR: Nível de detalhamento da saída (0-5)
+    form: form
+
+  - name: host_timeout
+    type: string
+    required: false
+    label:
+      en_US: Host Timeout
+      bn: হোস্ট টাইমআউট
+      ru: Тайм-аут хоста
+      zh_Hans: 主机超时
+      ja_JP: ホストタイムアウト
+      pt_BR: Tempo Limite do Host
+    human_description:
+      en_US: Maximum time per host (e.g., 30m, 2h)
+      bn: প্রতি হোস্টের সর্বোচ্চ সময় (যেমন, 30m, 2h)
+      ru: Максимальное время на хост (например, 30m, 2h)
+      zh_Hans: 每个主机的最大时间（例如，30m，2h）
+      ja_JP: ホストごとの最大時間（例：30m、2h）
+      pt_BR: Tempo máximo por host (por exemplo, 30m, 2h)
+    llm_description: Duration string like 30s, 5m, 1h, 2h30m
+    form: llm
+
+  - name: max_parallelism
+    type: number
+    required: false
+    default: 100
+    min: 1
+    max: 1000
+    label:
+      en_US: Max Parallelism
+      bn: সর্বোচ্চ সমান্তরালতা
+      ru: Макс. параллелизм
+      zh_Hans: 最大并行度
+      ja_JP: 最大並列度
+      pt_BR: Paralelismo Máximo
+    human_description:
+      en_US: Maximum parallel operations
+      bn: সর্বোচ্চ সমান্তরাল অপারেশন
+      ru: Максимальное количество параллельных операций
+      zh_Hans: 最大并行操作数
+      ja_JP: 最大並列操作数
+      pt_BR: Operações paralelas máximas
+    form: form
+
+extra:
+  python:
+    source: tools/comprehensive_scanner.py
